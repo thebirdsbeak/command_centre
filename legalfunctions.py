@@ -1,4 +1,42 @@
 from random import randint
+import webbrowser
+import csv
+
+def search_gdpr():
+	'''Dispatches GDPR search'''
+	choicethree = input("\nSearch by word or [number]\n\n>>> ")
+	if len(choicethree) > 0:
+		if choicethree[0] == "[":
+			article = choicethree.replace("[", "").replace("]", "").strip()
+			try:
+				article = int(article)
+				return_search(article)
+			except ValueError:
+				print("\nOnly put numbers in the article search!")
+		else:
+			return_search(choicethree)
+			
+def return_search(searchword):
+	'''Returns GDPR search'''
+	gdpr = []
+	with open("assets/gdpr.csv") as legislation:
+		articlelist = csv.reader(legislation)
+		for row in articlelist:
+			gdpr.append(row)
+			
+	if type(searchword) == str:
+		for line in gdpr:
+			if searchword in line[0]:
+				print(line)
+		
+	else:
+		for line in gdpr:
+			if str(searchword) == line[2]:
+				print(line)
+		
+	
+def open_gdpr():
+	webbrowser.open("assets/gdpr.html")
 
 def maxims():
     '''Reads the maxims and passes the variable to function

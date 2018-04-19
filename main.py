@@ -10,7 +10,7 @@ Command line program for day to day tasks
 from companieshouse import company_details, my_companies
 from notepad import to_do, help_function
 from fun import wiki, headlines, list_crypto, select_coins, definition, synonym, quicksearch
-from legalfunctions import maxims
+from legalfunctions import maxims, search_gdpr, open_gdpr
 
 def startup():
 	'''Main loop input handler'''
@@ -24,7 +24,7 @@ def startup():
 		choice = input(inputprompt).upper()
 		
 		if choice == "1":
-			print("\n1. Company details", )
+			print("\n1. Company details")
 			print("2. Filings", )
 			print("3. My Companies", )
 			choicetwo = input(inputprompt).upper()
@@ -39,12 +39,21 @@ def startup():
 			to_do()
 			
 		elif choice == "3":
-			maxims()
+			print("\n1. Search GDPR")
+			print("2. Open GDPR")
+			print("3. Maxims")
+			choicetwo = input(inputprompt).upper()
+			if choicetwo == "1":
+				search_gdpr()
+			if choicetwo == "2":
+				open_gdpr()
+			if choicetwo == "3":
+				maxims()
 		
 		elif choice == "4":
-			print("\n1. BBC Headlines", )
-			print("2. Cryto prices", )
-			print("3. Search cryto", )
+			print("\n1. BBC Headlines")
+			print("2. Cryto prices")
+			print("3. Search cryto")
 			choicetwo = input(inputprompt).upper()
 			if choicetwo == "1":
 				headlines()
