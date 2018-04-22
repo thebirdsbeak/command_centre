@@ -40,44 +40,38 @@ def handle_300(page_data):
 
 
 def handle_200(page_data, url, flag):
-    choice = input("(O)pen, (S)earch or (E)xtract: ")
-    if choice.upper() == "O":
-        if flag == False:
-            url = url.replace("/id/", "/")
-            url += "/contents?view=plain"
-        elif flag == True:
-            url = page_data.headers['Content-Location'].replace("/data.htm")
-            url += "view=plain"    
-        webbrowser.open(url)
-    elif choice.upper() == "S":
-        search_legislation(page_data, url)
-    elif choice.upper() == "E":
-        build_extract(url)
+    if flag == False:
+        url = url.replace("/id/", "/")
+        url += "/contents?view=plain"
+    elif flag == True:
+        url = page_data.headers['Content-Location'].replace("/data.htm", "")
+        url += "?view=plain" 
     else:
         return
+    webbrowser.open(url)
 
 
-def search_legislation(page_data, url):
-    crossheadings = []
-    sections = []
-    schedules = []
-    contents_page = requests.get(url)
-    contents_text = contents_page.text
-    soup = BeautifulSoup(contents_text, "html.parser")
-    for i in soup.find_all("a"):
-        elif "/crossheading/" in i.get('href'):
-            if i.get('href' not in str(crossheadings):
-                crossheadings.append([i.contents, i.get('href')])
-        elif "/section/" in i.get('href'):
-            if i.get('href') not in str(sections):
-                sections.append([i.contents, i.get('href')])
-        elif "/schedule" in i.get('href'):
-            schedules.append(i.get('href'))
-    print("\nHeadings: {}\nSections: {}\nSchedules: {}\n".format(len(crossheadings), len(sections), len(schedules)))
+#def search_legislation(page_data, url):
+#    crossheadings = []
+#    sections = []
+#    schedules = []
+#    contents_page = requests.get(url)
+#    contents_text = contents_page.text
+#    soup = BeautifulSoup(contents_text, "html.parser")
+#    for i in soup.find_all("a"):
+#        elif "/crossheading/" in i.get('href'):
+#            if i.get('href' not in str(crossheadings):
+#                crossheadings.append([i.contents, i.get('href')])
+#        elif "/section/" in i.get('href'):
+#            if i.get('href') not in str(sections):
+#                sections.append([i.contents, i.get('href')])
+#        elif "/schedule" in i.get('href'):
+#            schedules.append(i.get('href'))
+#    print("\nHeadings: {}\nSections: {}\nSchedules: {}\n".format(len(crossheadings), len(sections), len(schedules)))
 
     
-def build_extract():
-    return
+#def build_extract():
+#    return
 
 def search_gdpr():
     '''Dispatches GDPR search'''
