@@ -1,5 +1,4 @@
 import os
-from termcolor import colored, cprint
 
 def to_do():
 
@@ -12,7 +11,7 @@ def to_do():
 		print("------------------------")
 		   
 		content = [l for l in lines]
-		inputprompt = colored("\n>>> " ,'yellow', attrs=['bold'])
+		inputprompt = "\n>>> "
 		choice = input(inputprompt).upper()
 		if len(choice) > 0:
 			try:
@@ -25,6 +24,8 @@ def to_do():
 					
 			else:
 				print("\n{} - {}".format(choice, content[choice]))
+				with open("assets/rubbish.txt", "a") as wastebin:
+					wastebin.write("\n{} - {}".format(choice, content[choice]))
 				newline = input("{} - ".format(choice))
 				content[choice] = newline + '\n'
 
