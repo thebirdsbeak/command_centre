@@ -59,22 +59,22 @@ def handle_200(page_data, url, flag):
 
 def search_legislation(page_data, url):
     crossheadings = []
-    parts = []
     sections = []
     schedules = []
     contents_page = requests.get(url)
     contents_text = contents_page.text
     soup = BeautifulSoup(contents_text, "html.parser")
     for i in soup.find_all("a"):
-        if "/part/" in i.get('href'):
-            parts.append(i.contents[0])
         elif "/crossheading/" in i.get('href'):
-            crossheadings.append(i.contents[0])
+            if i.get('href' not in str(crossheadings):
+                crossheadings.append([i.contents, i.get('href')])
         elif "/section/" in i.get('href'):
-            sections.append(i.contents[0])
+            if i.get('href') not in str(sections):
+                sections.append([i.contents, i.get('href')])
         elif "/schedule" in i.get('href'):
-            schedules.append(i.contents[0])
-    print("Parts: {}\nHeadings: {}\nSections: {}\nSchedules: {}\n".format(len(parts), len(crossheadings), len(sections), len(schedules)))
+            schedules.append(i.get('href'))
+    print("\nHeadings: {}\nSections: {}\nSchedules: {}\n".format(len(crossheadings), len(sections), len(schedules)))
+
     
 def build_extract():
     return
