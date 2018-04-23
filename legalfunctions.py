@@ -94,18 +94,24 @@ def return_search(searchword):
         articlelist = csv.reader(legislation)
         for row in articlelist:
             gdpr.append(row)
-            
+
     if type(searchword) == str:
+        result_string = ""
         for line in gdpr:
             if searchword in line[0]:
-                print(line)
-        
+                print("Chapter {}\n{}\n{}\n{}({})\n{}\n".format(line[5], line[4], line[3], line[2], line[1], line[0]))
+                result_string += "Chapter {}\n{}\n{}\n{}({})\n{}\n\n".format(line[5], line[4], line[3], line[2], line[1], line[0])
+        if len(result_string) > 0:
+            open_choice = input("Save report? (y/n)\n>>> ")
+            if open_choice.upper() == "Y":
+                with open("assets/report.txt", "w") as search_file:
+                    search_file.write(result_string)
+                webbrowser.open("assets/report.txt")
     else:
         for line in gdpr:
-            if str(searchword) == line[2]:
-                print(line)
-        
-    
+            if str(searchword) == str(line[2]):
+                print("Chapter {}\n {}\n{}\n{}({})\n{}\n".format(line[5], line[4], line[3], line[2], line[1], line[0]))
+   
 def open_gdpr():
     webbrowser.open("assets/gdpr.html")
 

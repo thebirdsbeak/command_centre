@@ -85,13 +85,13 @@ def list_crypto():
 	data = r.json()
 	for i in data:
 		if float(i['percent_change_1h']) > 1:
-			print(('{} ({}) - {} ({})'.format(i['name'], i['symbol'], i['price_usd'], i['percent_change_1h'])), 'green', attrs=['bold'])
+			print('{} ({}) - {} ({})'.format(i['name'], i['symbol'], i['price_usd'], i['percent_change_1h']))
 		elif float(i['percent_change_1h']) < -1:
-			print(('{} ({}) - {} ({})'.format(i['name'], i['symbol'], i['price_usd'], i['percent_change_1h'])), 'red', attrs=['bold'])
+			print('{} ({}) - {} ({})'.format(i['name'], i['symbol'], i['price_usd'], i['percent_change_1h']))
 		else:
 			print('{} ({}) - {} ({})'.format(i['name'], i['symbol'], i['price_usd'], i['percent_change_1h']))
-			
-		
+
+
 def select_coins():
 	r = requests.get('https://api.coinmarketcap.com/v1/ticker/')
 	data = r.json()
