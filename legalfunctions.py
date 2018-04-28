@@ -4,6 +4,7 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 
+
 def grab_legislation():
     '''Main search handler'''
     url = "http://www.legislation.gov.uk"
@@ -40,18 +41,18 @@ def handle_300(page_data):
 
 
 def handle_200(page_data, url, flag):
-    if flag == False:
+    if not flag:
         url = url.replace("/id/", "/")
         url += "/contents?view=plain"
-    elif flag == True:
+    elif flag:
         url = page_data.headers['Content-Location'].replace("/data.htm", "")
-        url += "?view=plain" 
+        url += "?view=plain"
     else:
         return
     webbrowser.open(url)
 
 
-#def search_legislation(page_data, url):
+# def search_legislation(page_data, url):
 #    crossheadings = []
 #    sections = []
 #    schedules = []
@@ -69,8 +70,8 @@ def handle_200(page_data, url, flag):
 #            schedules.append(i.get('href'))
 #    print("\nHeadings: {}\nSections: {}\nSchedules: {}\n".format(len(crossheadings), len(sections), len(schedules)))
 
-    
-#def build_extract():
+
+# def build_extract():
 #    return
 
 def search_gdpr():
@@ -86,7 +87,8 @@ def search_gdpr():
                 print("\nOnly put numbers in the article search!")
         else:
             return_search(choicethree)
-            
+
+
 def return_search(searchword):
     '''Returns GDPR search'''
     gdpr = []
@@ -108,10 +110,19 @@ def return_search(searchword):
                     search_file.write(result_string)
                 webbrowser.open("assets/report.txt")
     else:
+        result_string = ""
         for line in gdpr:
             if str(searchword) == str(line[2]):
-                print("Chapter {}\n {}\n{}\n{}({})\n{}\n".format(line[5], line[4], line[3], line[2], line[1], line[0]))
-   
+                print("Chapter {}\n{}\n{}\n{}({})\n{}\n".format(line[5], line[4], line[3], line[2], line[1], line[0]))
+                result_string += "Chapter {}\n {}\n{}\n{}({})\n{}\n\n".format(line[5], line[4], line[3], line[2], line[1], line[0])
+        if len(result_string) > 0:
+            open_choice = input("Save report? (y/n)\n>>> ")
+            if open_choice.upper() == "Y":
+                with open("assets/report.txt", "w") as search_file:
+                    search_file.write(result_string)
+                    webbrowser.open("assets/report.txt")
+
+
 def open_gdpr():
     webbrowser.open("assets/gdpr.html")
 
