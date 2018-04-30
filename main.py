@@ -12,7 +12,7 @@ from companieshouse import company_details, my_companies
 from notepad import to_do, help_function
 from fun import wiki, headlines, list_crypto, select_coins
 from fun import definition, synonym, quicksearch
-from legalfunctions import maxims, search_gdpr, open_gdpr, grab_legislation
+from legalfunctions import maxims, search_gdpr, open_gdpr, grab_legislation, clauses
 
 
 def startup():
@@ -42,7 +42,8 @@ def startup():
                 print("\n1. Search GDPR")
                 print("2. Open GDPR")
                 print("3. Legislation")
-                print("4. Maxims")
+                print("4. Clauses")
+                print("5. Maxims")
                 choicetwo = input(inputprompt).upper()
                 if choicetwo == "1":
                     search_gdpr()
@@ -51,6 +52,8 @@ def startup():
                 elif choicetwo == "3":
                     grab_legislation()
                 elif choicetwo == "4":
+                    clauses()
+                elif choicetwo == "5":
                     maxims()
             elif choice == "4":
                 print("\n1. BBC Headlines")

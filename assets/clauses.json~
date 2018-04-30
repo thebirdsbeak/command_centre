@@ -1,0 +1,75 @@
+[
+    {
+	"title": "Governing law E+W",
+	"id": 0,
+	"notes": "Basic English governing law",
+	"type": "governing_law",
+	"complexity": 0,
+	"default": true,
+	"keywords": [
+	    "law",
+	    "legal",
+	    "governed",
+	    "governing",
+	    "england"
+	],
+	"refs": "",
+	"text": "This {{agreement}} is governed by the laws of England and Wales."
+    },
+    {
+	"title": "Governing law France",
+	"id": 1,
+	"notes": "Governed by french law",
+	"type", "governing_law",
+	"complexity": 0,
+	"default": false,
+	"keywords": [
+	    "law",
+	    "legal",
+	    "governed",
+	    "governing",
+	    "france"
+	],
+	"refs": "",
+	"text": "This {{agreement}} is governed by the laws of France."
+    },
+    {
+	"title": "Jurisdiction E+W",
+	"id": 2,
+	"notes": "Basic exclusive english jurisdiction",
+	"type": "jurisdiction",
+	"complexity": 0,
+	"default": true,
+	"keywords": [
+	    "jurisdiction",
+	    "england",
+	    "exclusive",
+	    "court",
+	    "courts",
+	    "dispute",
+	    "system"
+	]
+	"refs": "",
+	"text": "Any dispute arising out of or in connection with this {{agreement}} shall be subject to the exclusive jurisdiction of the courts of England and Wales."
+    },
+    {
+	"title": "Jurisdiction defender establishment",
+	"id": 3,
+	"notes": "Jurisdiction based on place of defender",
+	"type": "jurisdiction",
+	"complexity": 1,
+	"default": false,
+	"keywords": [
+	    "jurisdiction",
+	    "seat",
+	    "establised",
+	    "establishment",
+	    "court",
+	    "courts",
+	    "dispute",
+	    "system"
+	]
+	"refs": "",
+	"text": "Any dispute arising out of or in connection with this {{agreement}} shall be governed by the courts of the country under whose laws the defending party is registered."
+    }
+]

@@ -3,7 +3,7 @@ import webbrowser
 import csv
 import requests
 from bs4 import BeautifulSoup
-
+import json
 
 def grab_legislation():
     '''Main search handler'''
@@ -51,28 +51,6 @@ def handle_200(page_data, url, flag):
         return
     webbrowser.open(url)
 
-
-# def search_legislation(page_data, url):
-#    crossheadings = []
-#    sections = []
-#    schedules = []
-#    contents_page = requests.get(url)
-#    contents_text = contents_page.text
-#    soup = BeautifulSoup(contents_text, "html.parser")
-#    for i in soup.find_all("a"):
-#        elif "/crossheading/" in i.get('href'):
-#            if i.get('href' not in str(crossheadings):
-#                crossheadings.append([i.contents, i.get('href')])
-#        elif "/section/" in i.get('href'):
-#            if i.get('href') not in str(sections):
-#                sections.append([i.contents, i.get('href')])
-#        elif "/schedule" in i.get('href'):
-#            schedules.append(i.get('href'))
-#    print("\nHeadings: {}\nSections: {}\nSchedules: {}\n".format(len(crossheadings), len(sections), len(schedules)))
-
-
-# def build_extract():
-#    return
 
 def search_gdpr():
     '''Dispatches GDPR search'''
@@ -125,6 +103,16 @@ def return_search(searchword):
 
 def open_gdpr():
     webbrowser.open("assets/gdpr.html")
+
+
+def clauses():
+    prompt = input("Search by title, or /keyword\n>>> ")
+    if prompt:
+        import json
+        data = json.load(open('assets/clauses.json'))
+        print(data)
+
+
 
 def maxims():
     '''Reads the maxims and passes the variable to function
